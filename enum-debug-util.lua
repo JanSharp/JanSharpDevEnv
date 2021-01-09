@@ -1,4 +1,10 @@
 
+local __DebugAdapter = __DebugAdapter
+local next = next
+local script = script
+local setmetatable = setmetatable
+local type = type
+
 ---replaces numbers with tables with metamethods to display enum names instead of raw numbers
 ---puts the enums_table in global to make it accessible in the variables view and debug console
 ---@param enums_table table<string, table<string, number>> @ the actual enums table to hook
@@ -6,11 +12,6 @@
 local function hook_enums(enums_table, enums_table_name)
   __DebugAdapter.defineGlobal(enums_table_name)
   _ENV[enums_table_name] = enums_table -- for the variables view and debug console
-
-  local next = next
-  local setmetatable = setmetatable
-  local type = type
-  local script = script
 
   local lookups = {}
 
