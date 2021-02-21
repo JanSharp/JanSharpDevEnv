@@ -17,6 +17,9 @@ local function hook_enums(enums_table, enums_table_name)
 
   -- metatable for all enum values to nicely display their actual name in debug views
   local meta = {
+    __eq = function(left, right)
+      return left.__value == right.__value and left.__enum_name == right.__enum_name
+    end,
     __debugline = function(enum_value)
       local enum_name = enum_value.__enum_name
       return enums_table_name .. "." .. enum_name .. "." .. lookups[enum_name][enum_value.__value]
