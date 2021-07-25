@@ -72,7 +72,12 @@ local function hook_enums(enums_table, enums_table_name)
   -- replace on_load with a custom one in order for
   -- the previous hook functions to actually get run
   local on_load = script.on_load
+  local currently_no_actual_handler = false
   function script.on_load(func)
+    if currently_no_actual_handler then
+      on_load(nil)
+    end
+    currently_no_actual_handler = not func
     if func then
       on_load(function()
         hook_enums_in_global()
