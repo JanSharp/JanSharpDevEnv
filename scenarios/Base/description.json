@@ -1,3 +1,4 @@
 {
-  "multiplayer-compatible": true
+  "multiplayer-compatible": true,
+  "order": "a"
 }
